@@ -34,7 +34,8 @@ class Request {
 		$this->rawData = $rawData;
 
 		$this->requestId = $data['request']['requestId'];
-		$this->timestamp = new DateTime($data['request']['timestamp']);
+		$this->timestamp = new DateTime();
+		$this->timestamp->setTimestamp($data['request']['timestamp']);
 		$this->session = new Session($data['session']);
 
 		$this->applicationId = (is_null($applicationId) && isset($data['session']['application']['applicationId']))
