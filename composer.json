@@ -1,5 +1,5 @@
 {
-    "name": "jakubsuchy/amazon-alexa-php",
+    "name": "20steps/amazon-alexa-php",
     "description": "Amazon Alexa interface for PHP",
     "license": "MIT",
     "type": "library",
