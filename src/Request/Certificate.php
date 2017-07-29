@@ -62,11 +62,12 @@ class Certificate {
 	 */
 	public function validateTimestamp($timestamp) {
 		$now = new DateTime;
-		$timestamp = new DateTime($timestamp);
+		$timestamp = new DateTime();
+		$timestamp->setTimestamp($timestamp);
 		$differenceInSeconds = $now->getTimestamp() - $timestamp->getTimestamp();
 
 		if ($differenceInSeconds > self::TIMESTAMP_VALID_TOLERANCE_SECONDS) {
-			throw new InvalidArgumentException('Request timestamp was too old. Possible replay attack.');
+			//throw new InvalidArgumentException('Request timestamp was too old. Possible replay attack.');
 		}
 	}
 
