@@ -2,6 +2,10 @@
 
 This library provides provides a convient interface for developing Amazon Alexa Skills for your PHP app.
 
+## Info
+
+WIP
+
 ## Usage
 
 Install via composer: `composer require 20steps/amazon-alexa-php`.
