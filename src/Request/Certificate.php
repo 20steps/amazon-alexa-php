@@ -60,10 +60,14 @@ class Certificate {
 	 * Check if request is whithin the allowed time.
 	 * @throws InvalidArgumentException
 	 */
-	public function validateTimestamp($timestamp) {
+	public function validateTimestamp($timestampData) {
 		$now = new DateTime;
-		$timestamp = new DateTime();
-		$timestamp->setTimestamp($timestamp);
+		if (is_numeric($timestampData)) {
+			$timestamp = new DateTime();
+			$timestamp->setTimestamp($timestampData);
+		} else {
+			$timestamp = new DateTime($timestampData);
+		}
 		$differenceInSeconds = $now->getTimestamp() - $timestamp->getTimestamp();
 
 		if ($differenceInSeconds > self::TIMESTAMP_VALID_TOLERANCE_SECONDS) {

@@ -36,8 +36,14 @@ class Request {
 
 		$this->requestId = $data['request']['requestId'];
 		$this->locale = $data['request']['locale'];
-		$this->timestamp = new DateTime();
-		$this->timestamp->setTimestamp($data['request']['timestamp']);
+		
+		$timestampData = $data['request']['timestamp'];
+		if (is_numeric($timestampData)) {
+			$this->timestamp = new DateTime();
+			$this->timestamp->setTimestamp($timestampData);
+		} else {
+			$this->timestamp = new DateTime($timestampData);
+		}
 		$this->session = new Session($data['session']);
 
 		$this->applicationId = (is_null($applicationId) && isset($data['session']['application']['applicationId']))
