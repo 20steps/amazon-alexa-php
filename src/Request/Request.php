@@ -13,6 +13,7 @@ class Request {
 
 	public $requestId;
 	public $timestamp;
+	public $locale;
 	/** @var Session */
 	public $session;
 	public $data;
@@ -34,6 +35,7 @@ class Request {
 		$this->rawData = $rawData;
 
 		$this->requestId = $data['request']['requestId'];
+		$this->locale = $data['request']['locale'];
 		$this->timestamp = new DateTime();
 		$this->timestamp->setTimestamp($data['request']['timestamp']);
 		$this->session = new Session($data['session']);
