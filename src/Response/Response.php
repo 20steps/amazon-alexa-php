@@ -12,7 +12,7 @@ class Response {
 	public $shouldEndSession = false;
 
 	public function __construct() {
-		$this->outputSpeech = new OutputSpeech;
+		$this->outputSpeech = new OutputSpeech();
 	}
 
         /**
@@ -21,7 +21,7 @@ class Response {
          * @return \Alexa\Response\Response
          */
 	public function respond($text) {
-		$this->outputSpeech = new OutputSpeech;
+		$this->outputSpeech = new OutputSpeech();
 		$this->outputSpeech->text = $text;
 
 		return $this;
@@ -33,7 +33,7 @@ class Response {
          * @return \Alexa\Response\Response
          */
         public function respondSSML($ssml) {
-                $this->outputSpeech = new OutputSpeech;
+                $this->outputSpeech = new OutputSpeech();
                 $this->outputSpeech->type = 'SSML';
                 $this->outputSpeech->ssml = $ssml;
                 
@@ -46,7 +46,7 @@ class Response {
          * @return \Alexa\Response\Response
          */
 	public function reprompt($text) {
-		$this->reprompt = new Reprompt;
+		$this->reprompt = new Reprompt();
 		$this->reprompt->outputSpeech->text = $text;
 
 		return $this;
@@ -58,7 +58,7 @@ class Response {
          * @return \Alexa\Response\Response
          */
 	public function repromptSSML($ssml) {
-		$this->reprompt = new Reprompt;
+		$this->reprompt = new Reprompt();
                 $this->reprompt->outputSpeech->type = 'SSML';
 		$this->reprompt->outputSpeech->text = $ssml;
 
@@ -72,14 +72,28 @@ class Response {
          * @return \Alexa\Response\Response
          */
 	public function withCard($title, $content = '') {
-		$this->card = new Card;
+		$this->card = new Card();
 		$this->card->title = $title;
 		$this->card->content = $content;
 		
 		return $this;
 	}
-
-        /**
+	
+	/**
+	 * Add card information
+	 * @param string $title
+	 * @param string $content
+	 * @return \Alexa\Response\Response
+	 */
+	public function withLinkAccountCard($title, $content = '') {
+		$this->card = new LinkAccountCard();
+		$this->card->title = $title;
+		$this->card->content = $content;
+		
+		return $this;
+	}
+	
+	/**
          * Set if it should end the session
          * @param type $shouldEndSession
          * @return \Alexa\Response\Response
